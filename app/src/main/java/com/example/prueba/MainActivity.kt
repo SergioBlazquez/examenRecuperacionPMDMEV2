@@ -1,6 +1,10 @@
 package com.example.prueba
 
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +20,8 @@ interface MainActivityInterface {
     suspend fun onPeopleReceived(listPeople: List<People>)
 }
 
- class MainActivity : AppCompatActivity(), MainActivityInterface {
+ class MainActivity : AppCompatActivity(), MainActivityInterface,
+     AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     var listaDatos: ArrayList<String>? = null
@@ -34,6 +39,14 @@ interface MainActivityInterface {
             GetAllFilms.send(this@MainActivity)
         }
 
+
+        val spinner: Spinner =findViewById(R.id.spinner)
+
+        spinner.onItemSelectedListener=this
+
+       ArrayAdapter.createFromResource(this, R.array.generos,R.layout.activity_main)
+
+
         // Comento lo que me da error
 
         //val exampleList= onPeopleReceived(listPeople) --> Al crear la variable no me deja pasarle la lista de las Personas(personajes Star Wars)
@@ -50,12 +63,22 @@ interface MainActivityInterface {
         withContext(Dispatchers.Main){
             binding.textView.text = ""
             listPeople.forEach {
+
+                //dependiendo de la posicion del spinner, filtrar si es hombre --> si es hombre, si es mujer --> mujer, si es otros --> si no es ni mujer ni hombre, si es todos no entra en el if
+
                 binding.textView.append(it.toString())
             }
         }
 
     }
 
+     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+         TODO("Not yet implemented")
+     }
+
+     override fun onNothingSelected(parent: AdapterView<*>?) {
+         TODO("Not yet implemented")
+     }
 
 
-}
+ }

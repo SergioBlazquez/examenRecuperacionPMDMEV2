@@ -26,6 +26,9 @@ data class People(
 
 override fun toString(): String {
     //return "$title, directed by $director in $created\n"
+
+
+
     return " $name pertenece a la raza $speciesUrls \n"
 }
 }
