@@ -64,7 +64,10 @@ interface MainActivityInterface {
             binding.textView.text = ""
             listPeople.forEach {
 
-                //dependiendo de la posicion del spinner, filtrar si es hombre --> si es hombre, si es mujer --> mujer, si es otros --> si no es ni mujer ni hombre, si es todos no entra en el if
+                //Dependiendo de la posicion del spinner, filtrar si es hombre --> si es hombre,
+                //                                                si es mujer --> mujer,
+                //                                                si es otros --> si no es ni mujer ni hombre,
+                //                                                si es todos no entra en el if
 
                 binding.textView.append(it.toString())
             }
@@ -73,11 +76,11 @@ interface MainActivityInterface {
     }
 
      override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-         TODO("Not yet implemented")
+         //Funcion que te da el valor que has seleccionado
      }
 
      override fun onNothingSelected(parent: AdapterView<*>?) {
-         TODO("Not yet implemented")
+         //funcion si no has seleccionado ningun valor
      }
 
 
